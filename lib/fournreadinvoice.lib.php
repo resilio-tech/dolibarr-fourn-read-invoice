@@ -242,11 +242,14 @@ function fournreadinvoiceCreateInvoice($command_ref, $file_path)
 		$invoice->mode_reglement_id = $supplier->mode_reglement_id;
 		$invoice->fk_account = $supplier->fk_account;
 		$invoice->note_public = $command->note_public;
-		$invoice->fk_multicurrency = $supplier->fk_multicurrency;
-		$invoice->multicurrency_code = $supplier->multicurrency_code;
-		$invoice->multicurrency_tx = $supplier->multicurrency_tx;
-		$invoice->fk_incoterms = $supplier->fk_incoterms;
-		$invoice->location_incoterms = $supplier->location_incoterms;
+		$invoice->fk_multicurrency = $command->fk_multicurrency;
+		$invoice->multicurrency_code = $command->multicurrency_code;
+		$invoice->multicurrency_tx = $command->multicurrency_tx;
+		$invoice->multicurrency_total_ht = $command->multicurrency_total_ht;
+		$invoice->multicurrency_total_tva = $command->multicurrency_total_tva;
+		$invoice->multicurrency_total_ttc = $command->multicurrency_total_ttc;
+		$invoice->fk_incoterms = $command->fk_incoterms;
+		$invoice->location_incoterms = $command->location_incoterms;
 
 		$invoice->create($user);
 
@@ -270,7 +273,14 @@ function fournreadinvoiceCreateInvoice($command_ref, $file_path)
 				$line->date_start,
 				$line->date_end,
 				0,
-				$line->info_bits
+				$line->info_bits,
+				'HT',
+				0,
+				-1,
+				0,
+				[],
+				0,
+				$line->multicurrency_subprice
 			);
 		}
 

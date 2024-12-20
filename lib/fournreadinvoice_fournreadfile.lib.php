@@ -34,7 +34,7 @@ function fournreadfilePrepareHead($object)
 	$langs->load("fournreadinvoice@fournreadinvoice");
 
 	$showtabofpagecontact = 0;
-	$showtabofpagenote = 0;
+	$showtabofpagenote = 1;
 	$showtabofpagedocument = 0;
 	$showtabofpageagenda = 0;
 
@@ -62,7 +62,7 @@ function fournreadfilePrepareHead($object)
 			if (!empty($object->note_public)) {
 				$nbNote++;
 			}
-			$head[$h][0] = dol_buildpath('/fournreadinvoice/fournreadfile_note.php', 1).'?id='.$object->id;
+			$head[$h][0] = dol_buildpath('/custom/fournreadinvoice/fournreadfile_note.php', 1).'?id='.$object->id;
 			$head[$h][1] = $langs->trans('Notes');
 			if ($nbNote > 0) {
 				$head[$h][1] .= (!getDolGlobalInt('MAIN_OPTIMIZEFORTEXTBROWSER') ? '<span class="badge marginleftonlyshort">'.$nbNote.'</span>' : '');
