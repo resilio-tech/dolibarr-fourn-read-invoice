@@ -1,0 +1,16 @@
+# Translation file
+
+FOURNREADINVOICE_MAILREPORT = Mail report
+
+FournReadInvoiceCronJobLabel = FournReadInvoice cron job
+
+FournReadInvoiceMailTitle = import de mail
+FournReadInvoiceMailSheduledJob1 = FournReadInvoice import de fichier par mail
+FournReadInvoiceMailSheduledJob2 = Plusieurs documents ont été ajoutés dans la file de traitement de FournReadInvoice et ont été traités
+FournReadInvoiceMailSheduledJob3 = Ces documents demandent une vérification et une validation
+
+Open = Ouvert
+Closed = Fermé
+Treated = Traité
+NotTreated = Non traité
+Error = Erreur
