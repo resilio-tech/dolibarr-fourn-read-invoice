@@ -1033,7 +1033,7 @@ class Fournreadfile extends CommonObject
                     continue;
                 }
 
-                $res = fournreadinvoiceCreateInvoice($command);
+                $res = fournreadinvoiceCreateInvoice($command, $filename);
 
                 if ($res < 0) {
                     $error++;

@@ -556,7 +556,6 @@ if ($massaction == 'analyze') {
 	if (!empty($errors)) {
 		setEventMessages(null, $errors, 'errors');
 	}
-	header("Location: ".$_SERVER["PHP_SELF"]);
 }
 
 if ($search_all) {

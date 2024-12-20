@@ -200,7 +200,7 @@ function PDFtoText($filename)
 	return extract_invoice_data(htmlspecialchars($text));
 }
 
-function fournreadinvoiceCreateInvoice($command_ref)
+function fournreadinvoiceCreateInvoice($command_ref, $file_path)
 {
 	if (empty($command_ref)) {
 		return -1;
@@ -242,12 +242,19 @@ function fournreadinvoiceCreateInvoice($command_ref)
 		$invoice->mode_reglement_id = $supplier->mode_reglement_id;
 		$invoice->fk_account = $supplier->fk_account;
 		$invoice->note_public = $command->note_public;
+		$invoice->fk_multicurrency = $supplier->fk_multicurrency;
+		$invoice->multicurrency_code = $supplier->multicurrency_code;
+		$invoice->multicurrency_tx = $supplier->multicurrency_tx;
+		$invoice->fk_incoterms = $supplier->fk_incoterms;
+		$invoice->location_incoterms = $supplier->location_incoterms;
 
 		$invoice->create($user);
 
 		if (empty($invoice->id)) {
 			throw new Exception($invoice->error);
 		}
+
+		$invoice->fetch($invoice->id);
 
 		// Add products
 		foreach ($command->lines as $line) {
@@ -266,8 +273,27 @@ function fournreadinvoiceCreateInvoice($command_ref)
 				$line->info_bits
 			);
 		}
+
+		// Add linked file
+		$ref = dol_sanitizeFileName($invoice->ref);
+		$upload_dir = $conf->fournisseur->facture->dir_output . '/' . get_exdir($invoice->id, 2, 0, 0, $invoice, 'invoice_supplier') . $ref;
+
+		include_once DOL_DOCUMENT_ROOT . '/core/lib/files.lib.php';
+		if (!is_dir($upload_dir)) {
+			mkdir($upload_dir, 0755, true);
+		}
+
+		if (is_dir($upload_dir) && file_exists($file_path)) {
+			$dest = $upload_dir . '/' . basename($file_path);
+			if (!dol_copy($file_path, $dest)) {
+				dol_syslog("Error when linking file to invoice", LOG_ERR);
+			}
+		}
+
+		// Add linked command
+		$invoice->add_object_linked('order_supplier', $command->id);
+
 	} catch (Exception $e) {
-		var_dump($e->getMessage());
 		return -1;
 	}
 
