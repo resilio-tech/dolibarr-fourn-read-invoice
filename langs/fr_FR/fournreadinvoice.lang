@@ -5,6 +5,9 @@ ModuleFournReadInvoiceName = Lecture Factures Fournisseur
 ModuleFournReadInvoiceDesc = Module de lecture automatique des factures fournisseur
 FournReadInvoiceDescription = Module de lecture automatique des factures fournisseur. Traite les fichiers reçus (via collecteur de mails ou autre) et les intègre dans Dolibarr.
 
+# Index
+FournReadInvoiceArea = Lecture Factures Fournisseur
+
 # Settings
 FOURNREADINVOICE_MAILREPORT = Adresse email pour les rapports
 FournReadInvoiceSetup = Configuration FournReadInvoice

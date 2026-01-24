@@ -1,0 +1,40 @@
+# Translation file - FournReadInvoice module
+
+# Module
+ModuleFournReadInvoiceName = Supplier Invoice Reader
+ModuleFournReadInvoiceDesc = Automatic supplier invoice reading module
+FournReadInvoiceDescription = Automatic supplier invoice reading module. Processes received files (via email collector or other) and integrates them into Dolibarr.
+
+# Index
+FournReadInvoiceArea = Supplier Invoice Reader
+
+# Settings
+FOURNREADINVOICE_MAILREPORT = Email address for reports
+FournReadInvoiceSetup = FournReadInvoice Setup
+FournReadInvoiceSetupPage = FournReadInvoice module configuration
+
+# Permissions
+ReadFournreadfile = Read supplier invoice files
+CreateUpdateFournreadfile = Create/Update supplier invoice files
+DeleteFournreadfile = Delete supplier invoice files
+
+# Cron job
+FournReadInvoiceCronJobLabel = Automatic invoice file processing
+
+# Mail notifications
+FournReadInvoiceMailTitle = Mail import
+FournReadInvoiceMailSheduledJob1 = FournReadInvoice file import by mail
+FournReadInvoiceMailSheduledJob2 = Several documents have been added to the FournReadInvoice processing queue and have been processed
+FournReadInvoiceMailSheduledJob3 = These documents require verification and validation
+
+# Status
+Open = Open
+Closed = Closed
+Treated = Treated
+NotTreated = Not treated
+Error = Error
+
+# Object
+Fournreadfile = Supplier invoice file
+Fournreadfiles = Supplier invoice files
+NewFournreadfile = New file
