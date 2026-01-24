@@ -288,17 +288,17 @@ class modFournReadInvoice extends DolibarrModules
 		// Add here entries to declare new permissions
 		/* BEGIN MODULEBUILDER PERMISSIONS */
 		$this->rights[$r][0] = $this->numero . sprintf('%02d', (0 * 10) + 0 + 1);
-		$this->rights[$r][1] = 'Read Fournreadfile object of FournReadInvoice';
+		$this->rights[$r][1] = 'ReadFournreadfile';
 		$this->rights[$r][4] = 'fournreadfile';
 		$this->rights[$r][5] = 'read';
 		$r++;
 		$this->rights[$r][0] = $this->numero . sprintf('%02d', (0 * 10) + 1 + 1);
-		$this->rights[$r][1] = 'Create/Update Fournreadfile object of FournReadInvoice';
+		$this->rights[$r][1] = 'CreateUpdateFournreadfile';
 		$this->rights[$r][4] = 'fournreadfile';
 		$this->rights[$r][5] = 'write';
 		$r++;
 		$this->rights[$r][0] = $this->numero . sprintf('%02d', (0 * 10) + 2 + 1);
-		$this->rights[$r][1] = 'Delete Fournreadfile object of FournReadInvoice';
+		$this->rights[$r][1] = 'DeleteFournreadfile';
 		$this->rights[$r][4] = 'fournreadfile';
 		$this->rights[$r][5] = 'delete';
 		$r++;
@@ -346,124 +346,15 @@ class modFournReadInvoice extends DolibarrModules
 			'object'=>'Fournreadfile'
 		);
 		/* END MODULEBUILDER LEFTMENU FOURNREADFILE */
-		/* BEGIN MODULEBUILDER LEFTMENU MYOBJECT */
-		/*
-		$this->menu[$r++]=array(
-			'fk_menu'=>'fk_mainmenu=fournreadinvoice',      // '' if this is a top menu. For left menu, use 'fk_mainmenu=xxx' or 'fk_mainmenu=xxx,fk_leftmenu=yyy' where xxx is mainmenucode and yyy is a leftmenucode
-			'type'=>'left',                          // This is a Left menu entry
-			'titre'=>'Fournreadfile',
-			'prefix' => img_picto('', $this->picto, 'class="pictofixedwidth valignmiddle paddingright"'),
-			'mainmenu'=>'fournreadinvoice',
-			'leftmenu'=>'fournreadfile',
-			'url'=>'/fournreadinvoice/fournreadinvoiceindex.php',
-			'langs'=>'fournreadinvoice@fournreadinvoice',	        // Lang file to use (without .lang) by module. File must be in langs/code_CODE/ directory.
-			'position'=>1000+$r,
-			'enabled'=>'isModEnabled("fournreadinvoice")', // Define condition to show or hide menu entry. Use 'isModEnabled("fournreadinvoice")' if entry must be visible if module is enabled.
-			'perms'=>'$user->hasRight("fournreadinvoice", "fournreadfile", "read")',
-			'target'=>'',
-			'user'=>2,				                // 0=Menu for internal users, 1=external users, 2=both
-			'object'=>'Fournreadfile'
-		);
-		$this->menu[$r++]=array(
-			'fk_menu'=>'fk_mainmenu=fournreadinvoice,fk_leftmenu=fournreadfile',	    // '' if this is a top menu. For left menu, use 'fk_mainmenu=xxx' or 'fk_mainmenu=xxx,fk_leftmenu=yyy' where xxx is mainmenucode and yyy is a leftmenucode
-			'type'=>'left',			                // This is a Left menu entry
-			'titre'=>'New_Fournreadfile',
-			'mainmenu'=>'fournreadinvoice',
-			'leftmenu'=>'fournreadinvoice_fournreadfile_new',
-			'url'=>'/fournreadinvoice/fournreadfile_card.php?action=create',
-			'langs'=>'fournreadinvoice@fournreadinvoice',	        // Lang file to use (without .lang) by module. File must be in langs/code_CODE/ directory.
-			'position'=>1000+$r,
-			'enabled'=>'isModEnabled("fournreadinvoice")', // Define condition to show or hide menu entry. Use 'isModEnabled("fournreadinvoice")' if entry must be visible if module is enabled. Use '$leftmenu==\'system\'' to show if leftmenu system is selected.
-			'perms'=>'$user->hasRight("fournreadinvoice", "fournreadfile", "write")'
-			'target'=>'',
-			'user'=>2,				                // 0=Menu for internal users, 1=external users, 2=both
-			'object'=>'Fournreadfile'
-		);
-		$this->menu[$r++]=array(
-			'fk_menu'=>'fk_mainmenu=fournreadinvoice,fk_leftmenu=fournreadfile',	    // '' if this is a top menu. For left menu, use 'fk_mainmenu=xxx' or 'fk_mainmenu=xxx,fk_leftmenu=yyy' where xxx is mainmenucode and yyy is a leftmenucode
-			'type'=>'left',			                // This is a Left menu entry
-			'titre'=>'List_Fournreadfile',
-			'mainmenu'=>'fournreadinvoice',
-			'leftmenu'=>'fournreadinvoice_fournreadfile_list',
-			'url'=>'/fournreadinvoice/fournreadfile_list.php',
-			'langs'=>'fournreadinvoice@fournreadinvoice',	        // Lang file to use (without .lang) by module. File must be in langs/code_CODE/ directory.
-			'position'=>1000+$r,
-			'enabled'=>'isModEnabled("fournreadinvoice")', // Define condition to show or hide menu entry. Use 'isModEnabled("fournreadinvoice")' if entry must be visible if module is enabled.
-			'perms'=>'$user->hasRight("fournreadinvoice", "fournreadfile", "read")'
-			'target'=>'',
-			'user'=>2,				                // 0=Menu for internal users, 1=external users, 2=both
-			'object'=>'Fournreadfile'
-		);
-		*/
-		/* END MODULEBUILDER LEFTMENU MYOBJECT */
 
 
 		// Exports profiles provided by this module
-		$r = 1;
-		/* BEGIN MODULEBUILDER EXPORT MYOBJECT */
-		/*
-		$langs->load("fournreadinvoice@fournreadinvoice");
-		$this->export_code[$r] = $this->rights_class.'_'.$r;
-		$this->export_label[$r] = 'FournreadfileLines';	// Translation key (used only if key ExportDataset_xxx_z not found)
-		$this->export_icon[$r] = $this->picto;
-		// Define $this->export_fields_array, $this->export_TypeFields_array and $this->export_entities_array
-		$keyforclass = 'Fournreadfile'; $keyforclassfile='/fournreadinvoice/class/fournreadfile.class.php'; $keyforelement='fournreadfile@fournreadinvoice';
-		include DOL_DOCUMENT_ROOT.'/core/commonfieldsinexport.inc.php';
-		//$this->export_fields_array[$r]['t.fieldtoadd']='FieldToAdd'; $this->export_TypeFields_array[$r]['t.fieldtoadd']='Text';
-		//unset($this->export_fields_array[$r]['t.fieldtoremove']);
-		//$keyforclass = 'FournreadfileLine'; $keyforclassfile='/fournreadinvoice/class/fournreadfile.class.php'; $keyforelement='fournreadfileline@fournreadinvoice'; $keyforalias='tl';
-		//include DOL_DOCUMENT_ROOT.'/core/commonfieldsinexport.inc.php';
-		$keyforselect='fournreadfile'; $keyforaliasextra='extra'; $keyforelement='fournreadfile@fournreadinvoice';
-		include DOL_DOCUMENT_ROOT.'/core/extrafieldsinexport.inc.php';
-		//$keyforselect='fournreadfileline'; $keyforaliasextra='extraline'; $keyforelement='fournreadfileline@fournreadinvoice';
-		//include DOL_DOCUMENT_ROOT.'/core/extrafieldsinexport.inc.php';
-		//$this->export_dependencies_array[$r] = array('fournreadfileline'=>array('tl.rowid','tl.ref')); // To force to activate one or several fields if we select some fields that need same (like to select a unique key if we ask a field of a child to avoid the DISTINCT to discard them, or for computed field than need several other fields)
-		//$this->export_special_array[$r] = array('t.field'=>'...');
-		//$this->export_examplevalues_array[$r] = array('t.field'=>'Example');
-		//$this->export_help_array[$r] = array('t.field'=>'FieldDescHelp');
-		$this->export_sql_start[$r]='SELECT DISTINCT ';
-		$this->export_sql_end[$r]  =' FROM '.MAIN_DB_PREFIX.'fournreadinvoice_fournreadfile as t';
-		//$this->export_sql_end[$r]  .=' LEFT JOIN '.MAIN_DB_PREFIX.'fournreadinvoice_fournreadfile_line as tl ON tl.fk_fournreadfile = t.rowid';
-		$this->export_sql_end[$r] .=' WHERE 1 = 1';
-		$this->export_sql_end[$r] .=' AND t.entity IN ('.getEntity('fournreadfile').')';
-		$r++; */
-		/* END MODULEBUILDER EXPORT MYOBJECT */
+		/* BEGIN MODULEBUILDER EXPORT FOURNREADFILE */
+		/* END MODULEBUILDER EXPORT FOURNREADFILE */
 
 		// Imports profiles provided by this module
-		$r = 1;
-		/* BEGIN MODULEBUILDER IMPORT MYOBJECT */
-		/*
-		$langs->load("fournreadinvoice@fournreadinvoice");
-		$this->import_code[$r] = $this->rights_class.'_'.$r;
-		$this->import_label[$r] = 'FournreadfileLines';	// Translation key (used only if key ExportDataset_xxx_z not found)
-		$this->import_icon[$r] = $this->picto;
-		$this->import_tables_array[$r] = array('t' => MAIN_DB_PREFIX.'fournreadinvoice_fournreadfile', 'extra' => MAIN_DB_PREFIX.'fournreadinvoice_fournreadfile_extrafields');
-		$this->import_tables_creator_array[$r] = array('t' => 'fk_user_author'); // Fields to store import user id
-		$import_sample = array();
-		$keyforclass = 'Fournreadfile'; $keyforclassfile='/fournreadinvoice/class/fournreadfile.class.php'; $keyforelement='fournreadfile@fournreadinvoice';
-		include DOL_DOCUMENT_ROOT.'/core/commonfieldsinimport.inc.php';
-		$import_extrafield_sample = array();
-		$keyforselect='fournreadfile'; $keyforaliasextra='extra'; $keyforelement='fournreadfile@fournreadinvoice';
-		include DOL_DOCUMENT_ROOT.'/core/extrafieldsinimport.inc.php';
-		$this->import_fieldshidden_array[$r] = array('extra.fk_object' => 'lastrowid-'.MAIN_DB_PREFIX.'fournreadinvoice_fournreadfile');
-		$this->import_regex_array[$r] = array();
-		$this->import_examplevalues_array[$r] = array_merge($import_sample, $import_extrafield_sample);
-		$this->import_updatekeys_array[$r] = array('t.ref' => 'Ref');
-		$this->import_convertvalue_array[$r] = array(
-			't.ref' => array(
-				'rule'=>'getrefifauto',
-				'class'=>(!getDolGlobalString('FOURNREADINVOICE_MYOBJECT_ADDON') ? 'mod_fournreadfile_standard' : getDolGlobalString('FOURNREADINVOICE_MYOBJECT_ADDON')),
-				'path'=>"/core/modules/fournreadinvoice/".(!getDolGlobalString('FOURNREADINVOICE_MYOBJECT_ADDON') ? 'mod_fournreadfile_standard' : getDolGlobalString('FOURNREADINVOICE_MYOBJECT_ADDON')).'.php',
-				'classobject'=>'Fournreadfile',
-				'pathobject'=>'/fournreadinvoice/class/fournreadfile.class.php',
-			),
-			't.fk_soc' => array('rule' => 'fetchidfromref', 'file' => '/societe/class/societe.class.php', 'class' => 'Societe', 'method' => 'fetch', 'element' => 'ThirdParty'),
-			't.fk_user_valid' => array('rule' => 'fetchidfromref', 'file' => '/user/class/user.class.php', 'class' => 'User', 'method' => 'fetch', 'element' => 'user'),
-			't.fk_mode_reglement' => array('rule' => 'fetchidfromcodeorlabel', 'file' => '/compta/paiement/class/cpaiement.class.php', 'class' => 'Cpaiement', 'method' => 'fetch', 'element' => 'cpayment'),
-		);
-		$this->import_run_sql_after_array[$r] = array();
-		$r++; */
-		/* END MODULEBUILDER IMPORT MYOBJECT */
+		/* BEGIN MODULEBUILDER IMPORT FOURNREADFILE */
+		/* END MODULEBUILDER IMPORT FOURNREADFILE */
 	}
 
 	/**

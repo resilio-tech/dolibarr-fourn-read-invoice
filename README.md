@@ -18,6 +18,29 @@ Module for automatic supplier invoice reading. Processes received files (via ema
 - Dolibarr >= 19.0
 - PHP >= 7.1
 - Email Collector module enabled (optional, for email reception)
+- For OCR functionality (PDF text extraction):
+  - Tesseract OCR with French language pack
+  - ImageMagick
+  - Ghostscript
+
+#### System dependencies installation
+
+**Debian/Ubuntu:**
+```bash
+apt update
+apt install tesseract-ocr tesseract-ocr-fra imagemagick ghostscript -y
+```
+
+**Alpine Linux:**
+```bash
+apk add --update tesseract-ocr tesseract-ocr-dev imagemagick ghostscript
+```
+
+**ImageMagick Policy (required for PDF processing):**
+Edit `/etc/ImageMagick-6/policy.xml` and ensure PDF access is enabled:
+```xml
+<policy domain="coder" rights="read|write" pattern="PDF" />
+```
 
 ### Module Installation
 
