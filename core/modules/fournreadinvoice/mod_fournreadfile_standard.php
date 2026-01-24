@@ -36,7 +36,7 @@ class mod_fournreadfile_standard extends ModeleNumRefFournreadfile
 	 */
 	public $version = 'dolibarr'; // 'development', 'experimental', 'dolibarr'
 
-	public $prefix = 'MYOBJECT';
+	public $prefix = 'FRF';
 
 	/**
 	 * @var string Error code (or message)

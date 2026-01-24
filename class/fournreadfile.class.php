@@ -887,15 +887,15 @@ class Fournreadfile extends CommonObject
 		global $langs, $conf;
 		$langs->load("fournreadinvoice@fournreadinvoice");
 
-		if (!getDolGlobalString('FOURNREADINVOICE_MYOBJECT_ADDON')) {
-			$conf->global->FOURNREADINVOICE_MYOBJECT_ADDON = 'mod_fournreadfile_standard';
+		if (!getDolGlobalString('FOURNREADINVOICE_FOURNREADFILE_ADDON')) {
+			$conf->global->FOURNREADINVOICE_FOURNREADFILE_ADDON = 'mod_fournreadfile_standard';
 		}
 
-		if (getDolGlobalString('FOURNREADINVOICE_MYOBJECT_ADDON')) {
+		if (getDolGlobalString('FOURNREADINVOICE_FOURNREADFILE_ADDON')) {
 			$mybool = false;
 
-			$file = getDolGlobalString('FOURNREADINVOICE_MYOBJECT_ADDON').".php";
-			$classname = getDolGlobalString('FOURNREADINVOICE_MYOBJECT_ADDON');
+			$file = getDolGlobalString('FOURNREADINVOICE_FOURNREADFILE_ADDON').".php";
+			$classname = getDolGlobalString('FOURNREADINVOICE_FOURNREADFILE_ADDON');
 
 			// Include file with class
 			$dirmodels = array_merge(array('/'), (array) $conf->modules_parts['models']);

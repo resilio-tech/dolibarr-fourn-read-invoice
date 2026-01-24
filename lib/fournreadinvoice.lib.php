@@ -32,7 +32,7 @@ function fournreadinvoiceAdminPrepareHead()
 
 	// global $db;
 	// $extrafields = new ExtraFields($db);
-	// $extrafields->fetch_name_optionals_label('myobject');
+	// $extrafields->fetch_name_optionals_label('fournreadfile');
 
 	$langs->load("fournreadinvoice@fournreadinvoice");
 
@@ -45,13 +45,13 @@ function fournreadinvoiceAdminPrepareHead()
 	$h++;
 
 	/*
-	$head[$h][0] = dol_buildpath("/fournreadinvoice/admin/myobject_extrafields.php", 1);
+	$head[$h][0] = dol_buildpath("/fournreadinvoice/admin/fournreadfile_extrafields.php", 1);
 	$head[$h][1] = $langs->trans("ExtraFields");
-	$nbExtrafields = is_countable($extrafields->attributes['myobject']['label']) ? count($extrafields->attributes['myobject']['label']) : 0;
+	$nbExtrafields = is_countable($extrafields->attributes['fournreadfile']['label']) ? count($extrafields->attributes['fournreadfile']['label']) : 0;
 	if ($nbExtrafields > 0) {
 		$head[$h][1] .= ' <span class="badge">' . $nbExtrafields . '</span>';
 	}
-	$head[$h][2] = 'myobject_extrafields';
+	$head[$h][2] = 'fournreadfile_extrafields';
 	$h++;
 	*/
 

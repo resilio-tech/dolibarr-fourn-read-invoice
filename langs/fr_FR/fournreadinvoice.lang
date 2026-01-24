@@ -1,16 +1,40 @@
-# Translation file
+# Translation file - FournReadInvoice module
 
-FOURNREADINVOICE_MAILREPORT = Mail report
+# Module
+ModuleFournReadInvoiceName = Lecture Factures Fournisseur
+ModuleFournReadInvoiceDesc = Module de lecture automatique des factures fournisseur
+FournReadInvoiceDescription = Module de lecture automatique des factures fournisseur. Traite les fichiers reçus (via collecteur de mails ou autre) et les intègre dans Dolibarr.
 
-FournReadInvoiceCronJobLabel = FournReadInvoice cron job
+# Index
+FournReadInvoiceArea = Lecture Factures Fournisseur
 
-FournReadInvoiceMailTitle = import de mail
+# Settings
+FOURNREADINVOICE_MAILREPORT = Adresse email pour les rapports
+FournReadInvoiceSetup = Configuration FournReadInvoice
+FournReadInvoiceSetupPage = Configuration du module FournReadInvoice
+
+# Permissions
+ReadFournreadfile = Lire les fichiers de facture fournisseur
+CreateUpdateFournreadfile = Créer/Modifier les fichiers de facture fournisseur
+DeleteFournreadfile = Supprimer les fichiers de facture fournisseur
+
+# Cron job
+FournReadInvoiceCronJobLabel = Traitement automatique des fichiers de facture
+
+# Mail notifications
+FournReadInvoiceMailTitle = Import de mail
 FournReadInvoiceMailSheduledJob1 = FournReadInvoice import de fichier par mail
 FournReadInvoiceMailSheduledJob2 = Plusieurs documents ont été ajoutés dans la file de traitement de FournReadInvoice et ont été traités
 FournReadInvoiceMailSheduledJob3 = Ces documents demandent une vérification et une validation
 
+# Status
 Open = Ouvert
 Closed = Fermé
 Treated = Traité
 NotTreated = Non traité
 Error = Erreur
+
+# Object
+Fournreadfile = Fichier facture fournisseur
+Fournreadfiles = Fichiers factures fournisseur
+NewFournreadfile = Nouveau fichier
