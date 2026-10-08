@@ -137,7 +137,7 @@ include DOL_DOCUMENT_ROOT.'/core/actions_fetchobject.inc.php'; // Must be includ
 
 // There is several ways to check permission.
 // Set $enablepermissioncheck to 1 to enable a minimum low level of checks
-$enablepermissioncheck = 0;
+$enablepermissioncheck = 1;
 if ($enablepermissioncheck) {
 	$permissiontoread = $user->hasRight('fournreadinvoice', 'fournreadfile', 'read');
 	$permissiontoadd = $user->hasRight('fournreadinvoice', 'fournreadfile', 'write'); // Used by the include of actions_addupdatedelete.inc.php and actions_lineupdown.inc.php
@@ -159,6 +159,9 @@ $upload_dir = $conf->fournreadinvoice->multidir_output[isset($object->entity) ? 
 //if ($user->socid > 0) $socid = $user->socid;
 //$isdraft = (isset($object->status) && ($object->status == $object::STATUS_DRAFT) ? 1 : 0);
 //restrictedArea($user, $object->module, $object, $object->table_element, $object->element, 'fk_soc', 'rowid', $isdraft);
+if ($user->socid > 0) {
+	accessforbidden();
+}
 if (!isModEnabled("fournreadinvoice")) {
 	accessforbidden();
 }
@@ -219,7 +222,7 @@ if (empty($reshook)) {
 	$trackid = 'fournreadfile'.$object->id;
 	include DOL_DOCUMENT_ROOT.'/core/actions_sendmails.inc.php';
 
-	if ($action == 'add') {
+	if ($action == 'add' && $permissiontoadd) {
 		$filenameTmp = $file['name'];
 		$dir = DOL_DATA_ROOT . '/fournreadinvoice/temp';
 		$upload_file = $dir . '/' . $filenameTmp;

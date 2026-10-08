@@ -342,7 +342,7 @@ class modFournReadInvoice extends DolibarrModules
 			'enabled'=>'isModEnabled("fournreadinvoice")',
 			'perms'=>'$user->hasRight("fournreadinvoice", "fournreadfile", "read")',
 			'target'=>'',
-			'user'=>2,
+			'user'=>0,
 			'object'=>'Fournreadfile'
 		);
 		/* END MODULEBUILDER LEFTMENU FOURNREADFILE */

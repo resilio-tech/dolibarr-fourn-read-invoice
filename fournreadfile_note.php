@@ -106,7 +106,7 @@ if ($id > 0 || !empty($ref)) {
 
 // There is several ways to check permission.
 // Set $enablepermissioncheck to 1 to enable a minimum low level of checks
-$enablepermissioncheck = 0;
+$enablepermissioncheck = 1;
 if ($enablepermissioncheck) {
 	$permissiontoread = $user->hasRight('fournreadinvoice', 'fournreadfile', 'read');
 	$permissiontoadd = $user->hasRight('fournreadinvoice', 'fournreadfile', 'write');
@@ -122,6 +122,9 @@ if ($enablepermissioncheck) {
 //if ($user->socid > 0) $socid = $user->socid;
 //$isdraft = (($object->status == $object::STATUS_DRAFT) ? 1 : 0);
 //restrictedArea($user, $object->module, $object->id, $object->table_element, $object->element, 'fk_soc', 'rowid', $isdraft);
+if ($user->socid > 0) {
+	accessforbidden();
+}
 if (!isModEnabled("fournreadinvoice")) {
 	accessforbidden();
 }
