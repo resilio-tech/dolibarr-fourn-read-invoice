@@ -175,7 +175,7 @@ function PDFtoText($filename)
 	//   <policy domain="coder" rights="read|write" pattern="PDF" />
 	//
 	// convert -density 300 /var/www/html/documents/scaninvoices/uploads/now/Facture-2024-41.pdf -depth 8 -strip -background white -alpha off /var/www/html/documents/scaninvoices/uploads/now/page-%04d.png
-	$convertCommand = "convert -density 300 $filename -depth 8 -strip -background white -alpha off $outputDir/page-%04d.png";
+	$convertCommand = "convert -density 300 ".escapeshellarg($filename)." -depth 8 -strip -background white -alpha off ".escapeshellarg($outputDir."/page-%04d.png");
 	exec($convertCommand, $output, $returnVar);
 
 	$images = glob("$outputDir/*.png");
@@ -183,7 +183,7 @@ function PDFtoText($filename)
 
 	foreach ($images as $image) {
 		$outputTxt = tempnam(sys_get_temp_dir(), 'ocr') . '.txt';
-		$tesseractCommand = "tesseract $image $outputTxt";
+		$tesseractCommand = "tesseract ".escapeshellarg($image)." ".escapeshellarg($outputTxt);
 		exec($tesseractCommand);
 
 		// Lire le contenu du fichier texte généré
