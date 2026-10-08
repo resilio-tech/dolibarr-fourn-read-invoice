@@ -190,15 +190,17 @@ $arrayfields = dol_sort_array($arrayfields, 'position');
 
 // There is several ways to check permission.
 // Set $enablepermissioncheck to 1 to enable a minimum low level of checks
-$enablepermissioncheck = 0;
+$enablepermissioncheck = 1;
 if ($enablepermissioncheck) {
 	$permissiontoread = $user->hasRight('fournreadinvoice', 'fournreadfile', 'read');
 	$permissiontoadd = $user->hasRight('fournreadinvoice', 'fournreadfile', 'write');
 	$permissiontodelete = $user->hasRight('fournreadinvoice', 'fournreadfile', 'delete');
+	$permissiontoanalyze = $permissiontoadd && ($user->hasRight("fournisseur", "facture", "creer") || $user->hasRight("supplier_invoice", "creer"));
 } else {
 	$permissiontoread = 1;
 	$permissiontoadd = 1;
 	$permissiontodelete = 1;
+	$permissiontoanalyze = 1;
 }
 
 // Security check (enable the most restrictive one)
@@ -508,11 +510,13 @@ $param .= $hookmanager->resPrint;
 
 // List of mass actions available
 $arrayofmassactions = array(
-	'analyze'=>img_picto('', 'check', 'class="pictofixedwidth"').$langs->trans("analyze"),
 	//'generate_doc'=>img_picto('', 'pdf', 'class="pictofixedwidth"').$langs->trans("ReGeneratePDF"),
 	//'builddoc'=>img_picto('', 'pdf', 'class="pictofixedwidth"').$langs->trans("PDFMerge"),
 	//'presend'=>img_picto('', 'email', 'class="pictofixedwidth"').$langs->trans("SendByMail"),
 );
+if (!empty($permissiontoanalyze)) {
+	$arrayofmassactions['analyze'] = img_picto('', 'check', 'class="pictofixedwidth"').$langs->trans("analyze");
+}
 if (!empty($permissiontodelete)) {
 	$arrayofmassactions['predelete'] = img_picto('', 'delete', 'class="pictofixedwidth"').$langs->trans("Delete");
 }
@@ -551,7 +555,7 @@ $objecttmp = new Fournreadfile($db);
 $trackid = 'xxxx'.$object->id;
 include DOL_DOCUMENT_ROOT.'/core/tpl/massactions_pre.tpl.php';
 
-if ($massaction == 'analyze') {
+if ($massaction == 'analyze' && $permissiontoanalyze) {
 	$errors = $object->analyze($arrayofselected);
 	if (!empty($errors)) {
 		setEventMessages(null, $errors, 'errors');
